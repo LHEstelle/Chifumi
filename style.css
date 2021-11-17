@@ -1,0 +1,39 @@
+        body {
+            background-image: url("img/61cvzHsX5hL._AC_SX522_.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        h1 {
+            font-family: 'Nosifer', cursive;
+            padding: 2rem;
+            color: red;
+        }
+        
+        .jouer {
+            background-color: black;
+            color: white;
+            border-radius: 2em;
+        }
+        
+        .boxeurG {
+            background-image: url("img/580b585b2edbce24c47b2ae7.png");
+            height: 40vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .boxeurD {
+            background-image: url("img/boxeur.png");
+            height: 40vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .score {
+            font-size: 3em;
+            font-style: bold;
+            border: solid 4px black;
+        }

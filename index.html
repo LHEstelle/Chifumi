@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--ICI CDN BOOTSRAP-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <title>JS</title>
+</head>
+
+<body>
+    <h1 class="text-center">CHI FOU MI</h1>
+
+    <div class="row">
+        <p class="text-center col score text-danger" id="userScore"></p>
+        <p class="text-center col score text-danger" id="computerScore"></p>
+    </div>
+    <div class="row text-center">
+        <div class="userChoice col-6" id="userChoice">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="button" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn bg-dark text-white m-3" for="btnradio1" onclick="choicePierre()">pierre 💣</label>
+
+                <input type="button" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn bg-dark  text-white m-3" for="btnradio2" onclick="choiceFeuille()">feuille ⛨</label>
+
+                <input type="button" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn bg-dark text-white m-3" for="btnradio3" onclick="choiceCiseaux()">ciseaux ⚔</label>
+            </div>
+        </div>
+        <div class="xChoice col-6" id="xChoice"></div>
+    </div>
+    <div class="row">
+
+        <div class="imgUserAppear col text-center" id="imgUserAppear"><span id="imgDefault" class="col text-center"></span></div>
+        <div class="imgComputerAppear col text-center" id="imgComputerAppear"><span id="imgDefault2" class="col text-center"></span></div>
+    </div>
+    <div class="row">
+        <div class="boxeurG col" id="boxeurG"></div>
+
+        <div class="imgResultAppear col" id="imgResultAppear"><span class="col" id="imgResultAppear"></span></div>
+
+        <div class="boxeurD col" id="boxeurD"></div>
+    </div>
+
+
+
+    <div class="text-center">
+        <button class=" jouer text-center col-lg-5 col-md-8 col-sm-8" id="playGame" onclick="playGame()">Arme choisie, COMBAT ! 🥊</button>
+    </div>
+
+
+    <script>
+        const computerChoice = ["pierre", "feuille", "ciseaux"];
+        const userChoice = ["pierre", "feuille", "ciseaux"];
+
+        let displayUser = document.getElementById("imgUserAppear")
+        let displayComputer = document.getElementById("imgComputerAppear")
+        let displayResult = document.getElementById("imgResultAppear")
+        let myChoice;
+
+
+
+
+        function aleaNumber(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function choicePierre() {
+
+            var img = document.createElement('img');
+            img.src = "img/bombe.gif";
+            img.id = "imgDefault";
+            myChoice = "pierre";
+            document.getElementById('imgUserAppear').replaceChild(img, document.getElementById("imgDefault"));
+            let choice = computerChoice[aleaNumber(0, computerChoice.length)]
+
+        }
+
+
+        function choiceFeuille() {
+
+            var img = document.createElement('img');
+            img.src = "img/bouclier.gif"
+            img.id = "imgDefault"
+            myChoice = "feuille";
+            document.getElementById('imgUserAppear').replaceChild(img, document.getElementById("imgDefault"));
+            let choice = computerChoice[aleaNumber(0, computerChoice.length)]
+        }
+
+        function choiceCiseaux() {
+
+            var img = document.createElement('img');
+            img.src = "img/epee.gif"
+            img.id = "imgDefault"
+            myChoice = "ciseaux";
+            document.getElementById('imgUserAppear').replaceChild(img, document.getElementById("imgDefault"));
+            let choice = computerChoice[aleaNumber(0, computerChoice.length)]
+        }
+        let scoreComputer = 1
+        let scoreUser = 1
+
+
+
+        function playGame() {
+            let choice = computerChoice[aleaNumber(0, computerChoice.length)]
+            if (myChoice.onclick == "pierre" || "feuille" || "ciseaux") {
+                if (choice == "pierre") {
+                    var img = document.createElement('img');
+                    img.src = "img/bombe.gif"
+                    img.id = "imgDefault2"
+                        // parentNode.replaceChild(newChild, oldChild);
+                    displayComputer.replaceChild(img, document.getElementById("imgDefault2"))
+
+                } else if (choice == "feuille") {
+                    var img = document.createElement('img');
+                    img.src = "img/bouclier.gif"
+                    img.id = "imgDefault2"
+                    displayComputer.replaceChild(img, document.getElementById("imgDefault2"));
+
+                } else if (choice == "ciseaux") {
+                    var img = document.createElement('img');
+                    img.src = "img/epee.gif"
+                    img.id = "imgDefault2"
+                    displayComputer.replaceChild(img, document.getElementById("imgDefault2"));
+                }
+            }
+            if (choice == "pierre" && myChoice == "ciseaux") {
+
+                let myAffichage = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/assome.gif"><span id="imgResult"></span></div>`
+                displayResult.innerHTML = myAffichage;
+
+                document.getElementById("computerScore")
+                    .innerText = scoreComputer;
+                scoreComputer++
+
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+
+
+
+            } else if (choice == "pierre" && myChoice == "feuille") {
+                let victoire = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/victoire.gif"><span id="imgResult"></span></div>`
+                displayResult.innerHTML = victoire;
+
+                document.getElementById("userScore")
+                    .innerText = scoreUser;
+                scoreUser++
+
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+
+            } else if (choice == "pierre" && myChoice == "pierre") {
+                let nul = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/jumeaux.png"><span id="imgResult"></span></div>`
+
+                displayResult.innerHTML = nul;
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+
+            } else if (choice == "feuille" && myChoice == "ciseaux") {
+                let victoire = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/victoire.gif"><span id="imgResult"></span></div>`
+
+                displayResult.innerHTML = victoire;
+                document.getElementById("userScore")
+                    .innerText = scoreUser;
+                scoreUser++
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+            } else if (choice == "feuille" && myChoice == "feuille") {
+                let nul = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/jumeaux.png"><span id="imgResult"></span></div>`
+
+                displayResult.innerHTML = nul;
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+            } else if (choice == "feuille" && myChoice == "pierre") {
+
+                let myAffichage = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/assome.gif"><span id="imgResult"></span></div>`
+
+                displayResult.innerHTML = myAffichage;
+                document.getElementById("computerScore")
+                    .innerText = scoreComputer;
+                scoreComputer++
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+
+            } else if (choice == "ciseaux" && myChoice == "ciseaux") {
+                let nul = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/jumeaux.png"><span id="imgResult"></span></div>`
+
+                displayResult.innerHTML = nul;
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+            } else if (choice == "ciseaux" && myChoice == "feuille") {
+
+                let myAffichage = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/assome.gif"><span id="imgResult"></span></div>`
+
+                displayResult.innerHTML = myAffichage;
+                document.getElementById("computerScore")
+                    .innerText = scoreComputer;
+                scoreComputer++
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+
+            } else if (choice == "ciseaux" && myChoice == "pierre") {
+                let victoire = `<div class="imgResultAppear col text-center" id="imgResult"><img src="img/victoire.gif"><span id="imgResult"></span></div>`
+
+                displayResult.innerHTML = victoire;
+                document.getElementById("userScore")
+                    .innerText = scoreUser;
+                scoreUser++
+                document.getElementById("boxeurG").style.display = "none"
+                document.getElementById("boxeurD").style.display = "none"
+            }
+
+            if (scoreComputer == 4) {
+                if (confirm("Perdu! Voulez-vous rejouer?")) {
+                    location.reload();
+                }
+            }
+            if (scoreUser == 4) {
+                if (confirm("Gagné! Voulez-vous rejouer?")) {
+                    location.reload();
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
